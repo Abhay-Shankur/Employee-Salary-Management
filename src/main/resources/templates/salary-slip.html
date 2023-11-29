@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Salary Slip</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .salary-slip-container {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .salary-slip-container h2 {
+            color: #333;
+        }
+
+        .employee-info {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .employee-info p {
+            margin: 5px 0;
+        }
+
+        .totals {
+            margin-top: 20px;
+        }
+
+        .totals p {
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .action-buttons button {
+            padding: 10px;
+            width: 120px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .confirm-button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+        }
+
+        .reject-button {
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="salary-slip-container">
+    <h2>Employee Salary Slip</h2>
+
+    <div class="employee-info">
+        <p><strong>Name: </strong><span th:text="${emp.name}"></span> </p>
+        <p><strong>Designation: </strong> <span th:text="${emp.designation}"></span></p>
+        <p><strong>Department: </strong> <span th:text="${emp.department}"></span></p>
+        <p><strong>Basic Salary: </strong> <span th:text="${emp.basicSalary}"></span></p>
+        <p><strong>HRA: </strong> <span th:text="${emp.hra}"></span></p>
+        <p><strong>DA: </strong> <span th:text="${emp.da}"></span></p>
+        <p><strong>TA: </strong> <span th:text="${emp.ta}"></span></p>
+    </div>
+
+    <div class="totals">
+        <p><strong>Total Earnings: </strong> <span th:text="${emp.total_earnings}"></span></p>
+        <p><strong>Deductions: </strong> <span th:text="${emp.deductions}"></span></p>
+        <p><strong>Net Remuneration: </strong> <span th:text="${emp.net_remuneration}"></span></p>
+    </div>
+
+    <form class="action-buttons" action="#" th:action="@{/update}" method="post">
+        <input type="hidden" name="empId" th:value="${emp.id}"/>
+        <button class="confirm-button" type="submit" name="action" value="Confirm">Confirm</button>
+        <button class="reject-button" type="submit" name="action" value="Reject">Reject</button>
+    </form>
+    <p th:if="${succes}" style="color: green" th:text="${succes}"></p>
+    <p th:if="${deny}" style="color: red" th:text="${deny}"></p>
+</div>
+
+<script>
+</script>
+
+</body>
+</html>
